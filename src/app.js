@@ -1,4 +1,5 @@
 'use strict';
+//module.exports = 
 const fileUtils = require('./lib/file.js');
 //writes and read the file
 const bitmapParser = require('./lib/bitmap.js');

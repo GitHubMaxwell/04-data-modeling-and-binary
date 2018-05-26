@@ -1,12 +1,8 @@
-
 'use strict';
 
 // const fs = require('fs');
 
-// NO, you may not read synchronosly ... this is only for expedience in the demo
-//eventually variable defined by user
-//module exports 
-module.exports = (buffer) => {
+module.exports = exports = (buffer) => {
     
 // fs.readFile(`${__dirname}/../../assets/bitmap.bmp`, (err,buffer) => {
 //   fs.readFile(input, (err,buffer) => {

@@ -17,7 +17,9 @@ describe('APP Module', () => {
     fileReader.readFile(`${__dirname}/../assets/bitmap.bmp`,(err,data)=>{
       console.log(`${__dirname}/../assets/bitmap.bmp`);
       console.log(data);
-      expect(bitmap(data).toString('utf-8', 0, 2)).toBe('BM');
+      // expect(bitmap(data).toString('utf-8', 0, 2)).toBe('BM');
+      console.log((bitmap(data)).type);
+      expect((bitmap(data)).type).toBe('BM');
       done();
     });
   });

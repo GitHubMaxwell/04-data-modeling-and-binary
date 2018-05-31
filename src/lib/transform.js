@@ -1,17 +1,21 @@
-module.exports = (buffer, transformation, cb) => {
-  transformations[transformation] && transformations[transformation](buffer);
-  return cb(null, buffer);
-  //no error back?
-};
+
+
+// (buffer, transformation, cb) => {
+//   transformations[transformation] && transformations[transformation](buffer);
+//   return cb(null, buffer);
+//no error back?
+// };
 
 let transformations = {};
 
 transformations.invert = buffer => {
-  for(let i = 0; i <= (buffer.colorPalette.length - 4); i = i + 4) {
-    buffer.colorPalette[i] = 255 - buffer.colorPalette[i];
-    buffer.colorPalette[i + 1] = 255 - buffer.colorPalette[i + 1];
-    buffer.colorPalette[i + 2] = 255 - buffer.colorPalette[i + 2];
+  for(let i = 0; i <= (buffer.colorTable.length - 4); i = i + 4) {
+    buffer.colorTable[i] = 255 - buffer.colorTable[i];
+    buffer.colorTable[i + 1] = 255 - buffer.colorTable[i + 1];
+    buffer.colorTable[i + 2] = 255 - buffer.colorTable[i + 2];
   }
+  // console.log(buffer);
+  return buffer;
 };
 
 transformations.random = buffer => {
@@ -19,10 +23,10 @@ transformations.random = buffer => {
     return Math.random() * (min - max) + min;
   };
 
-  for(let i = 0; i <= (buffer.colorPalette.length - 4); i = i + 4) {
-    buffer.colorPalette[i] = getRandomArbitrary(0, 255);
-    buffer.colorPalette[i + 1] = getRandomArbitrary(0, 255);
-    buffer.colorPalette[i + 2] = getRandomArbitrary(0, 255);
+  for(let i = 0; i <= (buffer.colorTable.length - 4); i = i + 4) {
+    buffer.colorTable[i] = getRandomArbitrary(0, 255);
+    buffer.colorTable[i + 1] = getRandomArbitrary(0, 255);
+    buffer.colorTable[i + 2] = getRandomArbitrary(0, 255);
   }
 };
 
@@ -48,3 +52,5 @@ transformations.frame = buffer => {
     
   }
 };
+
+module.exports = transformations;

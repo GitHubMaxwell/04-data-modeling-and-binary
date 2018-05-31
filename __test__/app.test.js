@@ -1,5 +1,6 @@
 const bitmap = require('../src/lib/bitmap.js');
 const fileReader = require('../src/lib/file.js');
+const transformFile = require('../src/lib/transform.js');
 // const fs = require('fs');
 
 
@@ -54,23 +55,29 @@ describe('APP Module', () => {
   // });
   // });
 
-  it('tests to read file, transform file, save newfile', ()=>{
+  it('tests to read file, transform file, save newfile', (done)=>{
     fileReader.readFile(`${__dirname}/../assets/bitmap.bmp`,(err,data)=>{
 
       // let newFile = Buffer.from(data);
       let newFile = bitmap(data);
       //create a copy of the object to manipulate
 
-      let transformFile = transformFile.invert(newFile);
+      let runTransform = transformFile.invert(newFile);
+      console.log(runTransform);
 
-      fileReader.writeFile(`${__dirname}/../assets/new.bmp`, transformFile, (err)=>{
+      //     transformFile.invert(newFile => {
+      let newBuffer = Buffer.concat([runTransform.bmpHeader, runTransform.dibHeader, runTransform.colorPalette, runTransform.pixelArray], runTransform.length);
+
+      fileReader.writeFile(`${__dirname}/../assets/new.bmp`, newBuffer, (err)=>{
         //does it have to be newFile.buffer?
-        if (err){throw err;}
+        if (err){
+          throw err;
+        }
       });
-
-      expect((bitmap(data)).type).toBe('BM');
+      //       // expect((bitmap(data)).type).toBe('BM');
       done();
-    });
+      //     });
+    });//it
+  
   });
-
 });

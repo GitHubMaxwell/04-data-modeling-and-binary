@@ -14,6 +14,7 @@ exports.readFile = (path, callback) => {
 exports.writeFile = (fileName, newBuffer, callback) => {
   fs.writeFile(fileName, newBuffer, (err, data) => {
     if (err) return callback(err);
+    console.log('New file written');
     return callback(null, data);
   });
 };

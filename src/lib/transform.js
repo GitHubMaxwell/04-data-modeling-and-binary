@@ -15,7 +15,10 @@ transformations.invert = buffer => {
     buffer.colorTable[i + 2] = 255 - buffer.colorTable[i + 2];
   }
   // console.log(buffer);
-  return buffer;
+  // let newBuffer = Buffer.concat([buffer.bmpHeader, buffer.dibHeader, buffer.colorPalette, buffer.pixelArray], buffer.fileSize);
+
+  // return newBuffer;
+  // return buffer;
 };
 
 transformations.random = buffer => {

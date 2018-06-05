@@ -66,7 +66,7 @@ describe('APP Module', () => {
       console.log(runTransform);
 
       //     transformFile.invert(newFile => {
-      let newBuffer = Buffer.concat([runTransform.bmpHeader, runTransform.dibHeader, runTransform.colorPalette, runTransform.pixelArray], runTransform.length);
+      let newBuffer = Buffer.concat([runTransform.bmpHeader, runTransform.dibHeader, runTransform.colorPalette, runTransform.pixelArray], runTransform.fileSize);
 
       fileReader.writeFile(`${__dirname}/../assets/new.bmp`, newBuffer, (err)=>{
         //does it have to be newFile.buffer?
